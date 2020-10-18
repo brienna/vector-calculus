@@ -9,23 +9,6 @@
 
 function [minimum_x, fx_at_minimum] = gradient_descent(f, G, x, convergence_threshold, N)
 
-% Set up plot
-figure('Position', [0 0 1000 500]);
-
-subplot(1, 2, 1);
-which_fig = 'f_quadratic';
-[x1, x2] = meshgrid(-60:60, -60:60);
-fx = x1.^2 + 10*x2.^2; % need to change this out with every different function
-%which_fig = 'f_exp';
-%[x1, x2] = meshgrid(-2:0.1:2, -1:0.1:1);
-%fx = exp(x1 + 3.*x2-0.1) + exp(x1 - 3.*x2 - 0.1) + exp(-x1 - 0.1);
-%fx = 100 * (x2 - x1.^2).^2 + (1 - x1).^2; %f3
-contour(x1, x2, fx, 40); 
-colormap jet;
-hold on;
-plot(x(1,:), x(2,:), 'o');
-hold on;
-
 converged = false; % initialize as false
 k = 1;
 steps = zeros(1, N);
@@ -75,7 +58,6 @@ steps = steps(1:k) % cut off steps we didn't use (we allowed N steps), this appr
 plot(1:k, steps, 'b');
 xlabel('iteration');
 ylabel('distance moved');
-saveas(gcf, ['figs/' which_fig '.png'], 'png');
 
 end
 
